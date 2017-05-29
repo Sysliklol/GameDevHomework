@@ -13,11 +13,16 @@ public class HeroRabbit : MonoBehaviour {
     Transform heroParent = null;
     public bool isBigRabbit = false;
     bool grew = false;
+    public float time_to_wait = 1.0f;
+    public bool canHit = true;
+    public float start_time_to_wait;
+
 	// Use this for initialization
 	void Start () {
         myBody = this.GetComponent<Rigidbody2D>();
         LevelController.current.setStartPosition(transform.position);
         this.heroParent = this.transform.parent;
+        start_time_to_wait = time_to_wait;
 	}
 	
 	// Update is called once per frame
@@ -31,7 +36,13 @@ public class HeroRabbit : MonoBehaviour {
         {
             transform.localScale -= new Vector3(0.3F, 0.3F, 0);
             grew = false;
+           
+ 
+            
+
         }
+
+        if (!canHit) wait();
 	}
 
     void FixedUpdate(){
@@ -118,7 +129,7 @@ public class HeroRabbit : MonoBehaviour {
             animator.SetBool("Jump", false);
         }
         else
-        {
+        { 
             animator.SetBool("Jump", true);
         }
         Debug.DrawLine(from, to, Color.red);
@@ -138,4 +149,16 @@ public class HeroRabbit : MonoBehaviour {
             obj.transform.position = pos;
         }
     }
+    public void wait()
+    {
+        time_to_wait -= Time.deltaTime;
+        if (time_to_wait <= 0)
+        {
+            canHit = true;
+            time_to_wait = start_time_to_wait;
+        }
+    }
+    
+    
+
 }

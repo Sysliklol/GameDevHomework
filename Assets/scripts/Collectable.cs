@@ -6,7 +6,6 @@ public class Collectable : MonoBehaviour {
 
 
     public bool hideAnimation = false;
-    
     protected virtual void OnRabitHit(HeroRabbit rabit)
     {
         hideAnimation = true;
@@ -30,9 +29,17 @@ public class Collectable : MonoBehaviour {
     {
         Destroy(this.gameObject);
     }
+
+
+    public void wait()
+    {
+
+
+       
+    }
 	// Use this for initialization
 	void Start () {
-		
+       
 	}
 	
 	// Update is called once per frame
