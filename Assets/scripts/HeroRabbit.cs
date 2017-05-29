@@ -10,15 +10,28 @@ public class HeroRabbit : MonoBehaviour {
     float JumpTime = 0f;
     public float MaxJumpTime = 2f;
     public float JumpSpeed = 2f;
+    Transform heroParent = null;
+    public bool isBigRabbit = false;
+    bool grew = false;
 	// Use this for initialization
 	void Start () {
         myBody = this.GetComponent<Rigidbody2D>();
         LevelController.current.setStartPosition(transform.position);
+        this.heroParent = this.transform.parent;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+        if (isBigRabbit&&!grew)
+        {
+            transform.localScale += new Vector3(0.3F, 0.3F, 0);
+            grew = true;
+        }
+        else if (!isBigRabbit && grew)
+        {
+            transform.localScale -= new Vector3(0.3F, 0.3F, 0);
+            grew = false;
+        }
 	}
 
     void FixedUpdate(){
@@ -51,8 +64,23 @@ public class HeroRabbit : MonoBehaviour {
         Vector3 from = transform.position + Vector3.up * 0.3f;
         Vector3 to = transform.position + Vector3.down * 0.1f;
         int layer_id = 1 << LayerMask.NameToLayer("Ground");
-       
         RaycastHit2D hit = Physics2D.Linecast(from, to, layer_id);
+        if (hit)
+        {
+            //Перевіряємо чи ми опинились на платформі
+            if (hit.transform != null
+            && hit.transform.GetComponent<MovingPlatform>() != null)
+            {
+                //Приліпаємо до платформи
+                SetNewParent(this.transform, hit.transform);
+            }
+        }
+        else
+        {
+            //Ми в повітрі відліпаємо під платформи
+            SetNewParent(this.transform, this.heroParent);
+        }
+        
         if (hit)
         {
             isGrounded = true;
@@ -95,5 +123,19 @@ public class HeroRabbit : MonoBehaviour {
         }
         Debug.DrawLine(from, to, Color.red);
 
+    }
+    static void SetNewParent(Transform obj, Transform new_parent)
+    {
+        if (obj.transform.parent != new_parent)
+        {
+            //Засікаємо позицію у Глобальних координатах
+            Vector3 pos = obj.transform.position;
+            //Встановлюємо нового батька
+            obj.transform.parent = new_parent;
+            //Після зміни батька координати кролика зміняться
+            //Оскільки вони тепер відносно іншого об’єкта
+            //повертаємо кролика в ті самі глобальні координати
+            obj.transform.position = pos;
+        }
     }
 }
