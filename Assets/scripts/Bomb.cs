@@ -28,7 +28,7 @@ public class Bomb : Collectable {
     {
         if (!this.hideAnimation)
         {
-            
+            HeroRabbit rabit = collider.GetComponent<HeroRabbit>();
             if (rabit != null&& rabit.canHit)
             {
                 this.OnRabitHit(rabit);

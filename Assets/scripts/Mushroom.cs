@@ -8,11 +8,8 @@ public class Mushroom : Collectable
     {
         hideAnimation = true;
         CollectedHide();
-        if (!rabit.isBigRabbit)
-        {
-            rabit.isBigRabbit = true;
-            transform.localScale += new Vector3(0.3F, 0.3F, 0);
-        }
+        if (!rabit.isBigRabbit)rabit.isBigRabbit = true;
+
     }
 
     void OnTriggerEnter2D(Collider2D collider)
