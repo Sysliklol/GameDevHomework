@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HeroRabbit : MonoBehaviour {
+    public Animator animator;
     public float speed = 1;
     public bool isGrounded = true;
     Rigidbody2D myBody = null;
@@ -16,7 +17,11 @@ public class HeroRabbit : MonoBehaviour {
     public float time_to_wait = 1.0f;
     public bool canHit = true;
     public float start_time_to_wait;
-
+    public static HeroRabbit lastRabit = null;
+    void Awake()
+    {
+        lastRabit = this;
+    }
 	// Use this for initialization
 	void Start () {
         myBody = this.GetComponent<Rigidbody2D>();
@@ -47,7 +52,7 @@ public class HeroRabbit : MonoBehaviour {
 
     void FixedUpdate(){
         float value = Input.GetAxis("Horizontal");
-        Animator animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         if (Mathf.Abs(value) > 0)
         {
             Vector2 vel = myBody.velocity;

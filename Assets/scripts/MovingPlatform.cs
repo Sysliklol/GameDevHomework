@@ -6,9 +6,6 @@ public class MovingPlatform : MonoBehaviour {
     Vector3 pointA;
     Vector3 pointB;
     public float vel = 9.0f;
-    public float kek ;
-    public float lol ;
-    public float lolkek;
     float firstVel;
     public float MoveBy = 10.0f;
     Vector3 my_pos;
