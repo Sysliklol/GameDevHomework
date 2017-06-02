@@ -18,6 +18,7 @@ public class HeroRabbit : MonoBehaviour {
     public bool canHit = true;
     public float start_time_to_wait;
     public static HeroRabbit lastRabit = null;
+    public bool kek = false;
     void Awake()
     {
         lastRabit = this;
