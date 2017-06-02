@@ -62,13 +62,13 @@ public class Orc : MonoBehaviour
         {
             vel *= -1;
             value = -1;
-            going_for_rabit = true;
+           
         }
         else if (rabit_pos.x < pointB.x && rabit_pos.x > this.transform.position.x && value < 0 && rabit_pos.y < this.transform.position.y + 0.85)
         {
             vel *= -1;
             value = 1;
-            going_for_rabit = true;
+            
         }
         else if(my_pos.x > pointB.x&&!going_for_rabit) {
         vel*=-1; //Move left

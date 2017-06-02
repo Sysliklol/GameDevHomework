@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Carrot : MonoBehaviour {
     public float vel = 3.0f;
+
     float launched;
 	// Use this for initialization
 	void Start () {
@@ -25,22 +26,25 @@ public class Carrot : MonoBehaviour {
     protected virtual void OnRabitHit(HeroRabbit rabit)
     {
         hideAnimation = true;
-        StartCoroutine(dielater(1.0f, rabit));
-        CollectedHide();
+        StartCoroutine(dielater(0.8f));
+        
     }
 
-    IEnumerator dielater(float duration, HeroRabbit rabit)
+    IEnumerator dielater(float duration)
     {
         //Perform action ...
         //Wait
 
-       
-        rabit.animator.SetTrigger("Die");
+
+        HeroRabbit.lastRabit.animator.SetTrigger("Die");
         yield return new WaitForSeconds(duration);
+        HeroRabbit.lastRabit.kek = true;
+        LevelController.current.onRabitDeath(HeroRabbit.lastRabit);
+        CollectedHide();
         //Continue excution in few seconds
         //Other actions...
 
-        LevelController.current.onRabitDeath(rabit);
+        
        
     }
     void OnTriggerEnter2D(Collider2D collider)

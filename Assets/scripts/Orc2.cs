@@ -93,10 +93,10 @@ public class Orc2 : MonoBehaviour
         if (kek==1)
         {
 
-            if (rabit_pos.x < this.transform.position.x)
+            if (rabit_pos.x < this.transform.position.x&&value==1)
             {
 
-                sr.flipX = true;
+                sr.flipX = false;
             }
             else
             {
@@ -122,13 +122,13 @@ public class Orc2 : MonoBehaviour
             vel = firstVel; 
             vel *= -1;
             value = -1;
-            going_for_rabit = true;
+            
         }
         else if (rabit_pos.x < pointB.x && rabit_pos.x > this.transform.position.x && value < 0 && rabit_pos.y < this.transform.position.y + 0.85)
         {
             vel = firstVel; 
             value = 1;
-            going_for_rabit = true;
+            
         }
         else if (my_pos.x > pointB.x && !going_for_rabit)
         {
