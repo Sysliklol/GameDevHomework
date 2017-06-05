@@ -79,6 +79,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hideAnimation: 0
+  CrystalSprite1: {fileID: 0}
+  CrystalSprite2: {fileID: 0}
+  CrystalSprite3: {fileID: 0}
 --- !u!212 &212150361689575540
 SpriteRenderer:
   m_ObjectHideFlags: 1

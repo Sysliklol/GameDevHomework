@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Carrot : MonoBehaviour {
-    public float vel = 3.0f;
+    public float vel = 2.0f;
 
     float launched;
 	// Use this for initialization
@@ -38,7 +38,7 @@ public class Carrot : MonoBehaviour {
 
         HeroRabbit.lastRabit.animator.SetTrigger("Die");
         yield return new WaitForSeconds(duration);
-        HeroRabbit.lastRabit.kek = true;
+        
         LevelController.current.onRabitDeath(HeroRabbit.lastRabit);
         CollectedHide();
         //Continue excution in few seconds

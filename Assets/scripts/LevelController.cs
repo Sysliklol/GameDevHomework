@@ -21,6 +21,7 @@ public class LevelController : MonoBehaviour {
     {
         
         rabit.transform.position = this.startingPosition;
+        rabit.numberOfLives--;
     }
 	// Use this for initialization
 	void Start () {

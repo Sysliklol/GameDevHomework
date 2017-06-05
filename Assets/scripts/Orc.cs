@@ -95,6 +95,9 @@ public class Orc : MonoBehaviour
             Destroy(this.GetComponent<Rigidbody2D>());
             Destroy(this.GetComponent<BoxCollider2D>());
             StartCoroutine(dielater(0.65f));
+            Vector2 vel = HeroRabbit.lastRabit.myBody.velocity;
+            vel.y = HeroRabbit.lastRabit.JumpSpeed * (2.0f);
+            HeroRabbit.lastRabit.myBody.velocity = vel;
         }
         else
         {
