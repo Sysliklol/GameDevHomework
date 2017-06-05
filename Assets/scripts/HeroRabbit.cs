@@ -37,6 +37,8 @@ public class HeroRabbit : MonoBehaviour {
     public UILabel coinsLabel;
     public float fruitCounter = 0f;
     public float coinsCounter = 0f;
+
+    public bool inMenu = false;
     void Awake()
     {
         lastRabit = this;
@@ -56,6 +58,7 @@ public class HeroRabbit : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+       
         if (isBigRabbit&&!grew)
         {
             transform.localScale += new Vector3(0.3F, 0.3F, 0);
@@ -96,13 +99,16 @@ public class HeroRabbit : MonoBehaviour {
             animator.SetBool("Run", false);
         }
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        if (value < 0)
+        if (!inMenu)
         {
-            sr.flipX = true;
-        }
-        else if (value > 0)
-        {
-            sr.flipX = false;
+            if (value < 0)
+            {
+                sr.flipX = true;
+            }
+            else if (value > 0)
+            {
+                sr.flipX = false;
+            }
         }
         Vector3 from = transform.position + Vector3.up * 0.3f;
         Vector3 to = transform.position + Vector3.down * 0.1f;

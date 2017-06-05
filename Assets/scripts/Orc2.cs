@@ -47,6 +47,7 @@ public class Orc2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+      
         if (vel == 0)
         {
             animator.SetBool("Walk", false);
@@ -62,8 +63,7 @@ public class Orc2 : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!dying)
-        {
+       
             Vector3 rabit_pos = HeroRabbit.lastRabit.transform.position;
             Ax = rabit_pos.y;
 
@@ -71,6 +71,8 @@ public class Orc2 : MonoBehaviour
             getDirection();
             transform.Translate(vel * Time.deltaTime, 0, 0);
             SpriteRenderer sr = GetComponent<SpriteRenderer>();
+            if (!dying)
+            {
             if (vel > 0)
             {
                 sr.flipX = true;
@@ -161,13 +163,14 @@ public class Orc2 : MonoBehaviour
     public bool hideAnimation = false;
     protected virtual void OnRabitHit(HeroRabbit rabit)
     {
-        animator = GetComponent<Animator>();
+       
         //hideAnimation = true;
         if (rabit.transform.position.y > this.transform.position.y + 1.05)
         {
             dying = true;
-            animator.SetTrigger("die");
-            animator.SetBool("Run", false);
+            //animator.SetBool("Run", false);
+           
+            
             Destroy(this.GetComponent<Rigidbody2D>());
             Destroy(this.GetComponent<BoxCollider2D>());
             StartCoroutine(dielater(0.65f));
@@ -199,8 +202,10 @@ public class Orc2 : MonoBehaviour
     }
     IEnumerator dielater(float duration)
     {
+       
         //Perform action ...
         //Wait
+        animator.SetTrigger("Die");
         yield return new WaitForSeconds(duration);
         //Continue excution in few seconds
         //Other actions...

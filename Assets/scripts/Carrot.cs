@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Carrot : MonoBehaviour {
-    public float vel = 2.0f;
+    public float vel = 0.5f;
 
     float launched;
 	// Use this for initialization
@@ -26,7 +26,7 @@ public class Carrot : MonoBehaviour {
     protected virtual void OnRabitHit(HeroRabbit rabit)
     {
         hideAnimation = true;
-        StartCoroutine(dielater(0.8f));
+       StartCoroutine(dielater(0.8f));
         
     }
 
