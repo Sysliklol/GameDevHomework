@@ -18,6 +18,6 @@ public class PlayButton : MonoBehaviour
     }
     public void onPlay()
     {
-        SceneManager.LoadScene("scene1");
+        SceneManager.LoadScene("scene0");
     }
 }

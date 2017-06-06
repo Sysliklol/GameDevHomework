@@ -39,6 +39,7 @@ public class HeroRabbit : MonoBehaviour {
     public float coinsCounter = 0f;
 
     public bool inMenu = false;
+    public bool inChoosing = false;
     void Awake()
     {
         lastRabit = this;
@@ -46,7 +47,7 @@ public class HeroRabbit : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         myBody = this.GetComponent<Rigidbody2D>();
-        LevelController.current.setStartPosition(transform.position);
+        if(!inMenu&&!inChoosing)LevelController.current.setStartPosition(transform.position);
         this.heroParent = this.transform.parent;
         start_time_to_wait = time_to_wait;
         fruitsLabel.text = fruitCounter + "/12";
