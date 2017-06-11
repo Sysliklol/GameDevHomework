@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class LevelController : MonoBehaviour {
     
+
+
     public static LevelController current;
-    
+
     void Awake()
     {
         current = this;

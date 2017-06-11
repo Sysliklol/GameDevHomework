@@ -115,6 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4776423359091658}
   - component: {fileID: 212678932883727194}
+  - component: {fileID: 114990509431242724}
   m_Layer: 0
   m_Name: furthestBckground
   m_TagString: Untagged
@@ -261,7 +262,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1812291658178348}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.02, y: 0.1, z: 1}
+  m_LocalPosition: {x: 3.71, y: 0.1, z: 1}
   m_LocalScale: {x: 5.3828616, y: 2.849392, z: 1}
   m_Children: []
   m_Father: {fileID: 4295746227218998}
@@ -274,7 +275,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1275542999251778}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.7273248, y: 0.2651707, z: 0}
+  m_LocalPosition: {x: 17.928137, y: 0.08366026, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4331719037958756}
@@ -333,6 +334,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slowdown: 0.5
+--- !u!114 &114990509431242724
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1662270311883770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54b7bd39d3751c43969a31e56a75b67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slowdown: 0
 --- !u!212 &212050334960121666
 SpriteRenderer:
   m_ObjectHideFlags: 1

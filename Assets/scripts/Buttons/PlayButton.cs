@@ -14,6 +14,7 @@ public class PlayButton : MonoBehaviour
 
     void Start()
     {
+
         playButton.signalOnClick.AddListener(this.onPlay);
     }
     public void onPlay()

@@ -17,12 +17,17 @@ public class Orc : MonoBehaviour
     float value = 1;
     bool going_for_rabit = false;
     bool dying = false;
+    public AudioClip attackSound = null;
+    AudioSource attackSource = null;
+
     // Use this for initialization
     void Start()
     {
         this.pointA = this.transform.position;
         this.pointB.x = this.pointA.x + MoveBy;
         firstVel = vel;
+        attackSource = gameObject.AddComponent<AudioSource>();
+        attackSource.clip = attackSound;
     }
 
     // Update is called once per frame
@@ -101,6 +106,7 @@ public class Orc : MonoBehaviour
         }
         else
         {
+            if(SoundManager.Instance.isSoundOn())attackSource.Play();
             animator.SetTrigger("attack");
             StartCoroutine(dielater(1.0f,rabit));
            

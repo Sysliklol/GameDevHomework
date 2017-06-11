@@ -3,6 +3,7 @@ using UnityEngine.Events;
 using UnityEngine;
 public class MyButton : MonoBehaviour
 {
+    public UI2DSprite Settings;
     public MyButton playButton;
     public UnityEvent signalOnClick = new UnityEvent();
     public void _onClick()
@@ -13,10 +14,11 @@ public class MyButton : MonoBehaviour
     
     void Start()
     {
+        Settings.enabled = false;
         playButton.signalOnClick.AddListener(this.onPlay);
     }
     public void onPlay()
     {
-        LevelController.current.onRabitDeath(HeroRabbit.lastRabit);
+        Settings.enabled = true;
     }
 }

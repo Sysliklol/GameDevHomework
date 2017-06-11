@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class HeroRabbit : MonoBehaviour {
-
+    
+    public AudioClip music = null;
+    AudioSource musicSource = null;
 
     public Animator animator;
     public float speed = 1;
@@ -40,6 +42,8 @@ public class HeroRabbit : MonoBehaviour {
 
     public bool inMenu = false;
     public bool inChoosing = false;
+
+    public bool kek = false;
     void Awake()
     {
         lastRabit = this;
@@ -55,6 +59,12 @@ public class HeroRabbit : MonoBehaviour {
         else if (coinsCounter / 100 < 1) coinsLabel.text = "00" + coinsCounter.ToString();
         else if (coinsCounter / 1000 < 1)coinsLabel.text = "0" + coinsCounter.ToString();
         else if (coinsCounter / 10000 < 1) coinsLabel.text = "" + coinsCounter.ToString();
+        kek = MusicManager.Instance.isSoundOn();
+        if (MusicManager.Instance.isSoundOn())
+        {
+          
+           
+        }
 	}
 	
 	// Update is called once per frame
@@ -77,8 +87,10 @@ public class HeroRabbit : MonoBehaviour {
         if (numberOfLives == 3f) { live3.enabled = true; }
         else if (numberOfLives == 2f) { live3.enabled = false; live2.enabled = true; }
         else if (numberOfLives == 1f) { live2.enabled = false; live1.enabled = true; }
-        //else if (numberOfLives == 0f) {live1.enabled = false; live0.enabled = true};
+        else if (numberOfLives == 0f) { SceneManager.LoadScene("scene0"); };
         if (!canHit) wait();
+
+        
 	}
 
     void FixedUpdate(){
