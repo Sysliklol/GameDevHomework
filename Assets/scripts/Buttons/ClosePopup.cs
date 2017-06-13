@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 public class ClosePopup : MonoBehaviour {
 
     public UI2DSprite Settings;
@@ -23,5 +24,14 @@ public class ClosePopup : MonoBehaviour {
     {
         Settings.UpdateVisibility(false, false);
         Settings.enabled = false;
+    }
+
+    public void onLeave()
+    {
+        SceneManager.LoadScene("mainmenu");
+    }
+    public void onRestart()
+    {
+        SceneManager.LoadScene("scene1");
     }
 }

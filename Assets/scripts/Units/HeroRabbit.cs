@@ -36,6 +36,7 @@ public class HeroRabbit : MonoBehaviour {
     public UI2DSprite live3;
 
     public UILabel fruitsLabel;
+    public UILabel fruitsLabelwon;
     public UILabel coinsLabel;
     public float fruitCounter = 0f;
     public float coinsCounter = 0f;
@@ -43,28 +44,45 @@ public class HeroRabbit : MonoBehaviour {
     public bool inMenu = false;
     public bool inChoosing = false;
 
-    public bool kek = false;
+    public double crystalsCollected = 0;
+    
+    public UI2DSprite lost;
+    public AudioClip lostSound = null;
+    AudioSource lostSource = null;
+
+
+    public AudioClip move = null;
+    AudioSource moveSource = null;
+    public AudioClip groundedSound = null;
+    AudioSource groundedSource = null;
     void Awake()
     {
         lastRabit = this;
     }
 	// Use this for initialization
 	void Start () {
+        LevelStat.Instance.read();
         myBody = this.GetComponent<Rigidbody2D>();
         if(!inMenu&&!inChoosing)LevelController.current.setStartPosition(transform.position);
         this.heroParent = this.transform.parent;
         start_time_to_wait = time_to_wait;
         fruitsLabel.text = fruitCounter + "/12";
+        fruitsLabelwon.text = fruitCounter + "/12";
         if (coinsCounter / 10 < 1) coinsLabel.text = "000" + coinsCounter.ToString();
         else if (coinsCounter / 100 < 1) coinsLabel.text = "00" + coinsCounter.ToString();
         else if (coinsCounter / 1000 < 1)coinsLabel.text = "0" + coinsCounter.ToString();
         else if (coinsCounter / 10000 < 1) coinsLabel.text = "" + coinsCounter.ToString();
-        kek = MusicManager.Instance.isSoundOn();
-        if (MusicManager.Instance.isSoundOn())
-        {
-          
-           
-        }
+        lostSource = gameObject.AddComponent<AudioSource>();
+        lostSource.clip = lostSound;
+
+
+        groundedSource = gameObject.AddComponent<AudioSource>();
+        groundedSource.clip = groundedSound;
+
+        moveSource = gameObject.AddComponent<AudioSource>();
+        moveSource.clip = move;
+        if (SoundManager.Instance.isSoundOn()) moveSource.Play();
+        moveSource.loop = true;
 	}
 	
 	// Update is called once per frame
@@ -87,12 +105,15 @@ public class HeroRabbit : MonoBehaviour {
         if (numberOfLives == 3f) { live3.enabled = true; }
         else if (numberOfLives == 2f) { live3.enabled = false; live2.enabled = true; }
         else if (numberOfLives == 1f) { live2.enabled = false; live1.enabled = true; }
-        else if (numberOfLives == 0f) { SceneManager.LoadScene("scene0"); };
+        else if (numberOfLives == 0f) { lostT(); lost.enabled = true; }
         if (!canHit) wait();
 
         
 	}
-
+    void lostT()
+    {
+        if (SoundManager.Instance.isSoundOn()) lostSource.Play();
+    }
     void FixedUpdate(){
         float value = Input.GetAxis("Horizontal");
         animator = GetComponent<Animator>();
@@ -105,10 +126,12 @@ public class HeroRabbit : MonoBehaviour {
 
         if (Mathf.Abs(value) > 0)
         {
+            if (SoundManager.Instance.isSoundOn()) moveSource.UnPause();
             animator.SetBool("Run", true);
         }
         else
         {
+            moveSource.Pause();
             animator.SetBool("Run", false);
         }
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
@@ -135,6 +158,7 @@ public class HeroRabbit : MonoBehaviour {
             {
                 //Приліпаємо до платформи
                 SetNewParent(this.transform, hit.transform);
+                if (SoundManager.Instance.isSoundOn()) groundedSource.Play();
             }
         }
         else
@@ -145,11 +169,13 @@ public class HeroRabbit : MonoBehaviour {
         
         if (hit)
         {
+            
             isGrounded = true;
         }
         else
         {
             isGrounded = false;
+            moveSource.Pause();
         }
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
@@ -169,6 +195,7 @@ public class HeroRabbit : MonoBehaviour {
             }
             else
             {
+               
                 this.JumpActive = false;
                 this.JumpTime = 0;
             }

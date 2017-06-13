@@ -10,14 +10,29 @@ public class Crystal : Collectable
     public UI2DSprite CrystalSprite1;
     public UI2DSprite CrystalSprite2;
     public UI2DSprite CrystalSprite3;
-    
+    public UI2DSprite CrystalSprite1won;
+    public UI2DSprite CrystalSprite2won;
+    public UI2DSprite CrystalSprite3won;
     protected virtual void OnRabitHit(HeroRabbit rabit)
     {
         hideAnimation = true;
         CollectedHide();
-        if (Crystal1) CrystalSprite1.enabled = true;
-        if (Crystal2) CrystalSprite2.enabled = true;
-        if (Crystal3) CrystalSprite3.enabled = true;
+        rabit.crystalsCollected += 1;
+        if (Crystal1)
+        {
+            CrystalSprite1.enabled = true;
+            CrystalSprite1won.enabled = true;
+        }
+        if (Crystal2)
+        {
+            CrystalSprite2.enabled = true;
+            CrystalSprite2won.enabled = true;
+        }
+        if (Crystal3)
+        {
+            CrystalSprite3.enabled = true;
+            CrystalSprite3won.enabled = true;
+        }
         
     }
 
@@ -37,6 +52,9 @@ public class Crystal : Collectable
         CrystalSprite1.enabled = false;
         CrystalSprite2.enabled = false;
         CrystalSprite3.enabled = false;
+        CrystalSprite1won.enabled = false;
+        CrystalSprite2won.enabled = false;
+        CrystalSprite3won.enabled = false;
 	}
 	
 	// Update is called once per frame
