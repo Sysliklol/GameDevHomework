@@ -23,7 +23,7 @@ public class ClosePopup : MonoBehaviour {
     public void onPlay()
     {
         Settings.UpdateVisibility(false, false);
-        Settings.enabled = false;
+       // Settings.enabled = false;
     }
 
     public void onLeave()

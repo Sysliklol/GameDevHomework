@@ -23,6 +23,7 @@ public class LevelController : MonoBehaviour {
     {
         
         rabit.transform.position = this.startingPosition;
+        rabit.respawnSource.Play();
         rabit.numberOfLives--;
     }
 	// Use this for initialization

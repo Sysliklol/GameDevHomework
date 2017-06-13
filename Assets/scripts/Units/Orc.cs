@@ -19,7 +19,7 @@ public class Orc : MonoBehaviour
     bool dying = false;
     public AudioClip attackSound = null;
     AudioSource attackSource = null;
-
+   
     // Use this for initialization
     void Start()
     {
@@ -28,6 +28,8 @@ public class Orc : MonoBehaviour
         firstVel = vel;
         attackSource = gameObject.AddComponent<AudioSource>();
         attackSource.clip = attackSound;
+       
+
     }
 
     // Update is called once per frame
@@ -94,6 +96,7 @@ public class Orc : MonoBehaviour
         //hideAnimation = true;
         if (rabit.transform.position.y > this.transform.position.y + 1.05)
         {
+            if (SoundManager.Instance.isSoundOn()) rabit.attackSource1.Play();
             dying = true;
             animator.SetTrigger("die");
             animator.SetBool("Run", false);
@@ -103,10 +106,12 @@ public class Orc : MonoBehaviour
             Vector2 vel = HeroRabbit.lastRabit.myBody.velocity;
             vel.y = HeroRabbit.lastRabit.JumpSpeed * (2.0f);
             HeroRabbit.lastRabit.myBody.velocity = vel;
+           
         }
         else
         {
             if(SoundManager.Instance.isSoundOn())attackSource.Play();
+
             animator.SetTrigger("attack");
             StartCoroutine(dielater(1.0f,rabit));
            

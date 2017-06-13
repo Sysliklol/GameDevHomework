@@ -55,6 +55,13 @@ public class HeroRabbit : MonoBehaviour {
     AudioSource moveSource = null;
     public AudioClip groundedSound = null;
     AudioSource groundedSource = null;
+
+    public AudioClip attackSound1 = null;
+    public AudioSource attackSource1 = null;
+
+    public AudioClip respawn = null;
+    public AudioSource respawnSource = null;
+    
     void Awake()
     {
         lastRabit = this;
@@ -83,6 +90,12 @@ public class HeroRabbit : MonoBehaviour {
         moveSource.clip = move;
         if (SoundManager.Instance.isSoundOn()) moveSource.Play();
         moveSource.loop = true;
+
+        attackSource1 = gameObject.AddComponent<AudioSource>();
+        attackSource1.clip = attackSound1;
+
+        respawnSource = gameObject.AddComponent<AudioSource>();
+        respawnSource.clip = respawn;
 	}
 	
 	// Update is called once per frame
