@@ -69,6 +69,7 @@ public class HeroRabbit : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         LevelStat.Instance.read();
+        
         myBody = this.GetComponent<Rigidbody2D>();
         if(!inMenu&&!inChoosing)LevelController.current.setStartPosition(transform.position);
         this.heroParent = this.transform.parent;
@@ -96,6 +97,7 @@ public class HeroRabbit : MonoBehaviour {
 
         respawnSource = gameObject.AddComponent<AudioSource>();
         respawnSource.clip = respawn;
+        
 	}
 	
 	// Update is called once per frame
@@ -144,6 +146,7 @@ public class HeroRabbit : MonoBehaviour {
         }
         else
         {
+           
             moveSource.Pause();
             animator.SetBool("Run", false);
         }
