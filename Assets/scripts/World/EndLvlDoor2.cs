@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class EndLvlDoor : MonoBehaviour
+public class EndLvlDoor2 : MonoBehaviour
 {
 
     public UI2DSprite Won;
@@ -12,20 +12,20 @@ public class EndLvlDoor : MonoBehaviour
     {
         if (SoundManager.Instance.isSoundOn()) wonSource.Play();
 
-        
-       // LevelStat.Instance.read();
-        PlayerPrefs.SetInt("completed", 1);
-        Won.enabled= true;
+
+        // LevelStat.Instance.read();
+        PlayerPrefs.SetInt("completed2", 1);
+        Won.enabled = true;
         if (HeroRabbit.lastRabit.crystalsCollected > 2)
         {
-          //  LevelStat.Instance.hasCrystals = true;
-            PlayerPrefs.SetInt("crystals", 1);
+            //  LevelStat.Instance.hasCrystals = true;
+            PlayerPrefs.SetInt("crystals2", 1);
         }
         if (HeroRabbit.lastRabit.fruitCounter > 11)
         {
-            PlayerPrefs.SetInt("fruits", 1);
+            PlayerPrefs.SetInt("fruits2", 1);
         }
-       // LevelStat.Instance.save();
+        // LevelStat.Instance.save();
         PlayerPrefs.Save();
     }
 
